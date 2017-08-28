@@ -17,7 +17,7 @@ filetype off " required! turn off
 " inspired by spf13, 自定义需要的插件集合
 if !exists('g:bundle_groups')
     " more options: ['json', 'nginx', 'golang', 'ruby', 'less', 'json', ]
-    let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta']
+    let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'golang', 'json', 'java']
 endif
 
 " ----------------------------------------------------------------------------
@@ -134,6 +134,13 @@ Plug 'altercation/vim-colors-solarized'
 " molokai
 " 主题 molokai
 Plug 'tomasr/molokai'
+
+" 主题 seti
+Plug 'trusktr/seti.vim'
+" 主题 onedark
+Plug 'joshdick/onedark.vim'
+Plug 'sheerun/vim-polyglot'
+
 
 
 " nav
@@ -306,7 +313,15 @@ call plug#end()
 
     " 禁止插件检查java
     " thanks to @marsqing, see https://github.com/wklken/k-vim/issues/164
-    let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['java'] }
+    " let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['java'] }
+    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'golang', 'java'] }
+    " 解决 golang 语法高亮 lag 的问题...
+    if &filetype == 'golang'
+        set nocursorcolumn
+        syntax sync minlines=128
+        set re=1
+    endif
+    let g:go_list_type = "quickfix"
 " }}}
 
 
@@ -329,7 +344,8 @@ call plug#end()
     "let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
 
     " 跳转到定义处, 分屏打开
-    let g:ycm_goto_buffer_command = 'horizontal-split'
+    "let g:ycm_goto_buffer_command = 'horizontal-split'
+    let g:ycm_goto_buffer_command = 'new-tab'
     " nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
     nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
     nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
@@ -727,8 +743,8 @@ call plug#end()
     let g:go_highlight_build_constraints = 1
 
     let g:go_fmt_fail_silently = 1
-    " let g:go_fmt_command = "goimports"
-    " let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+    let g:go_fmt_command = "goimports"
+    let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 " }}}
 
 " markdown {{{
