@@ -30,6 +30,8 @@ let g:mapleader = ','
 
 " 开启语法高亮
 syntax on
+set synmaxcol=128
+syntax sync minlines=256
 
 " install bundles
 if filereadable(expand("~/.vimrc.bundles"))
@@ -92,7 +94,7 @@ set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 
 " 突出显示当前列
-set cursorcolumn
+" set cursorcolumn
 " 突出显示当前行
 set cursorline
 
@@ -699,28 +701,73 @@ highlight SpellLocal term=underline cterm=underline
 
 
 
-" golang 相关
-" 解决 golang 语法高亮 lag 的问题...
-au BufRead,BufNewFile *.go set filetype=go
+"" golang 相关
+"" 解决 golang 语法高亮 lag 的问题...
+"au BufRead,BufNewFile *.go set filetype=go
+"
+""if filetype == 'go'
+"au FileType go set nocursorcolumn
+"au FileType go syntax sync minlines=256
+"au FileType go set synmaxcol=128
+"au FileType go set re=1
+""endif
+"
+"au FileType go nmap <Leader>s <Plug>(go-implements)
+"au FileType go nmap <Leader>i <Plug>(go-info)
+"au FileType go nmap <Leader>gd <Plug>(go-doc)
+"au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+"au FileType go nmap <leader>r <Plug>(go-run)
+"au FileType go nmap <leader>b <Plug>(go-build)
+"au FileType go nmap <leader>t <Plug>(go-test)
+"au FileType go nmap <leader>c <Plug>(go-coverage)
+"au FileType go nmap <Leader>ds <Plug>(go-def-split)
+"au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+"au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+"au FileType go nmap <Leader>e <Plug>(go-rename)
+"
+""set clipboard=unnamed
 
-"if filetype == 'go'
-au FileType go set nocursorcolumn
-au FileType go syntax sync minlines=128
-au FileType go set synmaxcol=128
-au FileType go set re=1
-"endif
-
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-
-"set clipboard=unnamed
+"au BufRead,BufNewFile *.go set filetype=go
+"function! VimGoSetup()
+  " vim-go related mappings
+  au FileType go nmap <Leader>r <Plug>(go-run)
+  au FileType go nmap <Leader>b <Plug>(go-build)
+  au FileType go nmap <Leader>t <Plug>(go-test)
+  au FileType go nmap <Leader>i <Plug>(go-info)
+  au FileType go nmap <Leader>s <Plug>(go-implements)
+  au FileType go nmap <Leader>c <Plug>(go-coverage)
+  au FileType go nmap <Leader>e <Plug>(go-rename)
+  au FileType go nmap <Leader>gi <Plug>(go-imports)
+  au FileType go nmap <Leader>gI <Plug>(go-install)
+  au FileType go nmap <Leader>gd <Plug>(go-doc)
+  au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+  au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+  au FileType go nmap <Leader>ds <Plug>(go-def-split)
+  au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+  au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+  au FileType go set nocursorcolumn
+  au FileType go syntax sync minlines=256
+  au FileType go set synmaxcol=128
+  au FileType go set re=1
+  let g:go_auto_type_info = 1
+  let g:go_fmt_command = "gofmt"
+  let g:go_fmt_experimental = 1
+  let g:go_dispatch_enabled = 0 " vim-dispatch needed
+  let g:go_metalinter_autosave = 1
+  let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+  let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+  let g:go_term_enabled = 0
+  let g:go_term_mode = "vertical"
+" let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+" let g:go_highlight_structs = 1
+" let g:go_highlight_interfaces = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_extra_types = 1
+  let g:go_highlight_build_constraints = 1
+  let g:go_highlight_chan_whitespace_error = 1
+"endfunction
+"
+if &filetype == 'go'
+  call VimGoSetup()
+endif
