@@ -230,9 +230,9 @@ set ttyfast
 set nrformats=
 
 " 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
-set relativenumber number
-au FocusLost * :set norelativenumber number
-au FocusGained * :set relativenumber
+"set relativenumber number
+"au FocusLost * :set norelativenumber number
+"au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
 autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber
@@ -728,7 +728,7 @@ highlight SpellLocal term=underline cterm=underline
 ""set clipboard=unnamed
 
 "au BufRead,BufNewFile *.go set filetype=go
-"function! VimGoSetup()
+function! VimGoSetup()
   " vim-go related mappings
   au FileType go nmap <Leader>r <Plug>(go-run)
   au FileType go nmap <Leader>b <Plug>(go-build)
@@ -758,16 +758,16 @@ highlight SpellLocal term=underline cterm=underline
   let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
   let g:go_term_enabled = 0
   let g:go_term_mode = "vertical"
-" let g:go_highlight_functions = 1
+  let g:go_highlight_functions = 1
   let g:go_highlight_methods = 1
-" let g:go_highlight_structs = 1
-" let g:go_highlight_interfaces = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_interfaces = 1
   let g:go_highlight_operators = 1
   let g:go_highlight_extra_types = 1
   let g:go_highlight_build_constraints = 1
   let g:go_highlight_chan_whitespace_error = 1
-"endfunction
+endfunction
 "
-if &filetype == 'go'
+if &filetype == 'golang'
   call VimGoSetup()
 endif
