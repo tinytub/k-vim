@@ -700,34 +700,6 @@ highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
 
-
-"" golang 相关
-"" 解决 golang 语法高亮 lag 的问题...
-"au BufRead,BufNewFile *.go set filetype=go
-"
-""if filetype == 'go'
-"au FileType go set nocursorcolumn
-"au FileType go syntax sync minlines=256
-"au FileType go set synmaxcol=128
-"au FileType go set re=1
-""endif
-"
-"au FileType go nmap <Leader>s <Plug>(go-implements)
-"au FileType go nmap <Leader>i <Plug>(go-info)
-"au FileType go nmap <Leader>gd <Plug>(go-doc)
-"au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-"au FileType go nmap <leader>r <Plug>(go-run)
-"au FileType go nmap <leader>b <Plug>(go-build)
-"au FileType go nmap <leader>t <Plug>(go-test)
-"au FileType go nmap <leader>c <Plug>(go-coverage)
-"au FileType go nmap <Leader>ds <Plug>(go-def-split)
-"au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-"au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-"au FileType go nmap <Leader>e <Plug>(go-rename)
-"
-""set clipboard=unnamed
-
-au BufRead,BufNewFile *.go set filetype=go
 function! VimGoSetup()
   " vim-go related mappings
   au FileType go nmap <Leader>r <Plug>(go-run)
@@ -768,6 +740,6 @@ function! VimGoSetup()
   let g:go_highlight_chan_whitespace_error = 1
 endfunction
 "
-if &filetype == 'go'
+"if &filetype == 'go'
   call VimGoSetup()
-endif
+"endif

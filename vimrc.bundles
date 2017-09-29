@@ -369,8 +369,8 @@ if has_key(g:plugs, 'syntastic')
     " 禁止插件检查java
     " thanks to @marsqing, see https://github.com/wklken/k-vim/issues/164
     " let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['java'] }
-    " let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'golang', 'java'] }
-    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['java'] }
+    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'golang', 'java'] }
+    " let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['java','go','golang'] }
 
     let g:go_list_type = "quickfix"
 
