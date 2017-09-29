@@ -727,7 +727,7 @@ highlight SpellLocal term=underline cterm=underline
 "
 ""set clipboard=unnamed
 
-"au BufRead,BufNewFile *.go set filetype=go
+au BufRead,BufNewFile *.go set filetype=go
 function! VimGoSetup()
   " vim-go related mappings
   au FileType go nmap <Leader>r <Plug>(go-run)
@@ -768,6 +768,6 @@ function! VimGoSetup()
   let g:go_highlight_chan_whitespace_error = 1
 endfunction
 "
-if &filetype == 'golang'
+if &filetype == 'go'
   call VimGoSetup()
 endif

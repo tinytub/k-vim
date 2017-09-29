@@ -372,13 +372,6 @@ if has_key(g:plugs, 'syntastic')
     " let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'golang', 'java'] }
     let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['java'] }
 
-    " 解决 golang 语法高亮 lag 的问题...
-    if &filetype == 'golang'
-        set nocursorcolumn
-        syntax sync minlines=128
-        set re=1
-    endif
-
     let g:go_list_type = "quickfix"
 
     " 关闭syntastic语法检查, 鼠标复制代码时用到, 防止把错误标志给复制了
