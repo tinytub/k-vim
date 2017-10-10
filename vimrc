@@ -96,7 +96,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 " 突出显示当前列
 " set cursorcolumn
 " 突出显示当前行
-set cursorline
+" set cursorline
 
 
 " 设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制, 不需要可以去掉
@@ -722,12 +722,12 @@ function! VimGoSetup()
   au FileType go set synmaxcol=128
   au FileType go set re=1
   let g:go_auto_type_info = 1
-  let g:go_fmt_command = "gofmt"
+  let g:go_fmt_command = "goimports"
   let g:go_fmt_experimental = 1
   let g:go_dispatch_enabled = 0 " vim-dispatch needed
-  let g:go_metalinter_autosave = 1
-  let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-  let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+  "let g:go_metalinter_autosave = 1
+  "let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+  "let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
   let g:go_term_enabled = 0
   let g:go_term_mode = "vertical"
   let g:go_highlight_functions = 1
